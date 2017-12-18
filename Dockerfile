@@ -59,6 +59,8 @@ RUN \
 	php7-xmlreader \
 	php7-zip \
 	php7-redis \
+	php7-imagick \
+	exiftool \
 	samba \
 	sudo \
 	tar \

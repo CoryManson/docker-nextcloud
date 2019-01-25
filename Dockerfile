@@ -1,4 +1,4 @@
-FROM lsiobase/alpine.nginx:3.7
+FROM lsiobase/alpine.nginx:3.8
 
 # set version label
 ARG BUILD_DATE
@@ -26,6 +26,7 @@ RUN \
  apk add --no-cache \
 	curl \
 	ffmpeg \
+	imagemagick \
 	libxml2 \
 	php7-apcu \
 	php7-bz2 \
@@ -37,10 +38,10 @@ RUN \
 	php7-gd \
 	php7-gmp \
 	php7-iconv \
+	php7-imagick \
 	php7-imap \
 	php7-intl \
 	php7-ldap \
-	php7-mbstring \
 	php7-mcrypt \
 	php7-memcached \
 	php7-opcache \
@@ -49,10 +50,10 @@ RUN \
 	php7-pdo_pgsql \
 	php7-pdo_sqlite \
 	php7-pgsql \
+	php7-phar \
 	php7-posix \
 	php7-redis \
 	php7-sqlite3 \
-	php7-xml \
 	php7-xmlreader \
 	php7-zip \
 	php7-redis \
@@ -80,6 +81,7 @@ RUN \
 	-e 's/;opcache.save_comments.*=.*/opcache.save_comments=1/g' \
 	-e 's/;opcache.revalidate_freq.*=.*/opcache.revalidate_freq=1/g' \
 	-e 's/;always_populate_raw_post_data.*=.*/always_populate_raw_post_data=-1/g' \
+	-e 's/memory_limit.*=.*128M/memory_limit=512M/g' \
 		/etc/php7/php.ini && \
  sed -i \
 	'/opcache.enable=1/a opcache.enable_cli=1' \
